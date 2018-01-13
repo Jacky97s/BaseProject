@@ -1,6 +1,7 @@
 package demo;
 
 import demo.calories.CaloriesMain;
+import demo.sortByImportance.SortMain;
 import demo.sport.SportMain;
 import demo.wallet.WalletMain;
 
@@ -24,8 +25,8 @@ public class Main extends JFrame {
             _instance = new Main();
             _instance.setContentPane(new Main().HomePage);
             _instance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            _instance.setBounds(600, 100, 500, 500);
-            _instance.setPreferredSize(new Dimension(700, 800));
+            _instance.setBounds(400, 60, 400, 400);
+            _instance.setPreferredSize(new Dimension(650, 700));
             _instance.pack();
         }
         return _instance;
@@ -63,23 +64,19 @@ public class Main extends JFrame {
                 SportMain.getInstance().setVisible(true);
             }
         });
-    }
 
-    public static void display() {
-        Main fr = Main.getInstance();
-        fr.setVisible(true);
+        objectsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Main.getInstance().setVisible(false);
+                SortMain.getinstance().setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    display();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        Main fr = Main.getInstance();
+        fr.setVisible(true);
     }
 
     {
@@ -121,20 +118,25 @@ public class Main extends JFrame {
         panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(10, 1, new Insets(0, 0, 0, 0), -1, -1));
         HomePage.add(panel4, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         walletButton = new JButton();
+        Font walletButtonFont = this.$$$getFont$$$(null, -1, 20, walletButton.getFont());
+        if (walletButtonFont != null) walletButton.setFont(walletButtonFont);
         walletButton.setText("Wallet");
         panel4.add(walletButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         objectsButton = new JButton();
+        Font objectsButtonFont = this.$$$getFont$$$(null, -1, 20, objectsButton.getFont());
+        if (objectsButtonFont != null) objectsButton.setFont(objectsButtonFont);
         objectsButton.setText("Objects");
         panel4.add(objectsButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         caloriesButton = new JButton();
+        Font caloriesButtonFont = this.$$$getFont$$$(null, -1, 20, caloriesButton.getFont());
+        if (caloriesButtonFont != null) caloriesButton.setFont(caloriesButtonFont);
         caloriesButton.setText("Calories");
         panel4.add(caloriesButton, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         sportsButton = new JButton();
+        Font sportsButtonFont = this.$$$getFont$$$(null, -1, 20, sportsButton.getFont());
+        if (sportsButtonFont != null) sportsButton.setFont(sportsButtonFont);
         sportsButton.setText("Sports");
         panel4.add(sportsButton, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        exitButton = new JButton();
-        exitButton.setText("Exit");
-        panel4.add(exitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
         panel4.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(9, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
@@ -145,6 +147,11 @@ public class Main extends JFrame {
         panel4.add(spacer6, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer7 = new com.intellij.uiDesigner.core.Spacer();
         panel4.add(spacer7, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        exitButton = new JButton();
+        Font exitButtonFont = this.$$$getFont$$$(null, -1, 20, exitButton.getFont());
+        if (exitButtonFont != null) exitButton.setFont(exitButtonFont);
+        exitButton.setText("Exit");
+        panel4.add(exitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

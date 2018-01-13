@@ -13,14 +13,15 @@ public class ShowWallet extends JFrame {
     private JButton refreshButton;
     private JTable wHistoryTable;
     private JScrollPane scollPanel1;
+    private JTextArea textArea1;
 
     public static ShowWallet getInstance() {
         if (_instance == null) {
             _instance = new ShowWallet();
             _instance.setContentPane(new ShowWallet().HistoryPanel);
             _instance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            _instance.setBounds(600, 100, 500, 500);
-            _instance.setPreferredSize(new Dimension(700, 800));
+            _instance.setBounds(400, 60, 400, 400);
+            _instance.setPreferredSize(new Dimension(650, 700));
             _instance.pack();
         }
         return _instance;
@@ -44,6 +45,8 @@ public class ShowWallet extends JFrame {
                     Statement st = conn.createStatement();
                     String statement = ("SELECT * FROM WALLET");
                     ResultSet rs = st.executeQuery(statement);
+                    int sum = 0;
+                    textArea1.setText("");
                     DefaultTableModel model = new DefaultTableModel(new String[]{"No.", "DATE", "TIME", "MONEY", "USE"}, 0) {
                         public boolean isCellEditable(int row, int column) {
                             return false;//This causes all cells to be not editable
@@ -56,9 +59,12 @@ public class ShowWallet extends JFrame {
                         String e = rs.getString("TIME");
                         int f = rs.getInt("MONEY");
                         String g = rs.getString("USE");
+                        sum = sum + f;
                         model.addRow(new Object[]{index, d, e, f, g});
                     }
                     wHistoryTable.setModel(model);
+                    textArea1.append(String.valueOf(sum));
+
                     rs.close();
                     conn.close();
                 } catch (ClassNotFoundException e) {
@@ -86,14 +92,18 @@ public class ShowWallet extends JFrame {
      */
     private void $$$setupUI$$$() {
         HistoryPanel = new JPanel();
-        HistoryPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        HistoryPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        HistoryPanel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        HistoryPanel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         backButton = new JButton();
+        Font backButtonFont = this.$$$getFont$$$(null, -1, 20, backButton.getFont());
+        if (backButtonFont != null) backButton.setFont(backButtonFont);
         backButton.setText("Back");
         panel1.add(backButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         refreshButton = new JButton();
+        Font refreshButtonFont = this.$$$getFont$$$(null, -1, 20, refreshButton.getFont());
+        if (refreshButtonFont != null) refreshButton.setFont(refreshButtonFont);
         refreshButton.setText("Refresh");
         panel1.add(refreshButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
@@ -113,11 +123,30 @@ public class ShowWallet extends JFrame {
         scollPanel1 = new JScrollPane();
         HistoryPanel.add(scollPanel1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
+        Font scrollPane1Font = this.$$$getFont$$$(null, -1, 20, scrollPane1.getFont());
+        if (scrollPane1Font != null) scrollPane1.setFont(scrollPane1Font);
         scollPanel1.setViewportView(scrollPane1);
         wHistoryTable = new JTable();
+        wHistoryTable.setFillsViewportHeight(false);
+        Font wHistoryTableFont = this.$$$getFont$$$(null, -1, -1, wHistoryTable.getFont());
+        if (wHistoryTableFont != null) wHistoryTable.setFont(wHistoryTableFont);
         wHistoryTable.putClientProperty("JTable.autoStartsEdit", Boolean.FALSE);
         wHistoryTable.putClientProperty("html.disable", Boolean.FALSE);
         scrollPane1.setViewportView(wHistoryTable);
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
+        HistoryPanel.add(panel3, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
+        panel3.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        Font label2Font = this.$$$getFont$$$(null, -1, 20, label2.getFont());
+        if (label2Font != null) label2.setFont(label2Font);
+        label2.setText("Total Spent");
+        panel3.add(label2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        textArea1 = new JTextArea();
+        Font textArea1Font = this.$$$getFont$$$(null, -1, 20, textArea1.getFont());
+        if (textArea1Font != null) textArea1.setFont(textArea1Font);
+        panel3.add(textArea1, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         label1.setLabelFor(scollPanel1);
     }
 
